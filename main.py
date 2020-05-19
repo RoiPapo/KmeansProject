@@ -2,6 +2,7 @@ from sys import argv
 import os
 from point import Point
 from k_means import KMeans
+from runner import Runner
 
 
 def load_data(input_path):
@@ -29,7 +30,7 @@ def run_kmeans():
     if len(argv) == 5:
         random_seed = int(argv[4])
     else:
-        random_seed = 0
+        random_seed = 9
 
     if k <= 1 or num_iterations <= 0:
         print('Please provide correct parameters')
@@ -42,10 +43,22 @@ def run_kmeans():
     if k >= len(points):
         print('Please set K less than size of dataset')
         exit(1)
+        print("K max min mean")
+    runner1 = Runner(9, 3, points, 10)
+    runner2 = Runner(9, 4, points, 10)
+    runner3 = Runner(9, 5, points, 10)
+    runner_list = [runner1, runner2, runner3]
+    for runner in runner_list:
+        runner.start_running()
 
-    runner = KMeans(k, num_iterations)
-    runner.run(points, random_seed)
-    runner.print_results()
+
+
+
+
+    # runner = KMeans(k, num_iterations)
+    # runner.run(points, random_seed)
+    # runner.print_results()
+
 
 
 if __name__ == '__main__':

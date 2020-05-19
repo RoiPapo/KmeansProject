@@ -45,6 +45,12 @@ class KMeans:
             total_points += cluster.number_of_points
             total_SSE += cluster.compute_SSE()
         print('############################################')
-        print('Average distance to centroid: {:.2f}'.format(total_loss/total_points))
+        print('Average distance to centroid: {:.2f}'.format(total_loss / total_points))
         print('Sum of squared errors: {:.2f}. Mean squared error(MSE): {:.2f}'.
-              format(total_SSE, total_SSE/total_points))
+              format(total_SSE, total_SSE / total_points))
+
+    def SSE_state(self):
+        total_SSE = 0
+        for cluster in self._clusters:
+            total_SSE += cluster.compute_SSE()
+        return total_SSE
